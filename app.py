@@ -8,6 +8,7 @@ cadastros = functions.carregar_dados()
 @app.route('/', methods=['GET', 'POST'])
 def login():
 
+    cadastros = functions.carregar_dados()
     mensagem_erro = False
 
     if request.method == 'POST':
@@ -20,6 +21,9 @@ def login():
             # Redireciona para a rota do dashboard se as credenciais estiverem corretas
             if usuario == 'admin':
                 return redirect(url_for('admin'))
+            elif usuario != 'admin':
+                mensagem_erro = "Você não tem permissão para acesar esse conteúdo!"
+                return render_template('login.html', erro=mensagem_erro)
             return redirect(url_for('dashboard', nome_usuario=usuario))
         else:
             mensagem_erro = "Usuário ou senha incorretos!"

@@ -20,4 +20,4 @@ def carregar_dados():
         with open(caminho, "r", encoding="utf-8") as arquivo:
             return json.load(arquivo)
     except FileNotFoundError:
-        return {"Linguini0802": "Vini@0802"}
+        return {"admin": "admin"}
