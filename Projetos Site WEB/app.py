@@ -18,11 +18,21 @@ def login():
         # Validação simples
         if usuario in cadastros and senha == cadastros[usuario]:
             # Redireciona para a rota do dashboard se as credenciais estiverem corretas
+            if usuario == 'admin':
+                return redirect(url_for('admin'))
             return redirect(url_for('dashboard', nome_usuario=usuario))
         else:
             mensagem_erro = "Usuário ou senha incorretos!"
             
     return render_template('login.html', erro=mensagem_erro)
+
+@app.route('/admin')
+def admin():
+    # Lê o cadastros.json atualizado
+    dados_cadastros = functions.carregar_dados()
+    
+    # Envia os dados com a chave 'usuarios' para o HTML
+    return render_template('admin.html', usuarios=dados_cadastros)
 
 
 @app.route('/cadaster', methods=['GET', 'POST'])
