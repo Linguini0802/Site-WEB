@@ -6,7 +6,7 @@
     <title>Painel do Administrador</title>
 
     <!-- CSS Embutido -->
-    <style>
+    <!-- <style>
         /* Reset básico e tipografia */
         * {
             margin: 0;
@@ -133,13 +133,18 @@
         .btn-voltar:hover {
             background-color: #0052a3;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
 
     <div class="admin-card">
         <h1>Painel do Administrador</h1>
+
+        {% if usuario_deletado %}
+        <p class="usuario_deletado">O usuário: "{{ usuario_deletado }}" foi deletado!</p>
+        {% endif %}
+
         <p class="subtitulo">Usuários cadastrados no sistema:</p>
 
         {% if usuarios %}
@@ -152,9 +157,14 @@
             </thead>
             <tbody>
                 {% for usuario, senha in usuarios.items() %}
-                <tr>
+                <tr method="GET">
                     <td><strong>{{ usuario }}</strong></td>
                     <td><code>{{ senha }}</code></td>
+                    <td>
+                        <form action="/admin/delete_user" method="POST">
+                            <button type="submit" name="usuario_deletado" value="{{ usuario }}">DELETAR</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
