@@ -1,63 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Administrador</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
-    <div class="admin-card">
+    <div class="card card-wide">
         <h1>Painel do Administrador</h1>
 
         {% if stats_delete %}
-        <p class="stats_delete">{{ stats_delete }}</p>
+        <p class="msg msg-sucesso">{{ stats_delete }}</p>
         {% endif %}
 
         {% if stats_edit %}
-        <p>Alterações bem sucedidas</p>
+        <p class="msg msg-sucesso">Alterações bem-sucedidas!</p>
         {% endif %}
 
         <p class="subtitulo">Usuários cadastrados no sistema:</p>
 
         {% if usuarios %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Usuário</th>
-                    <th>Senha</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for usuario, senha in usuarios.items() %}
-                <tr method="GET">
-                    <td><strong>{{ usuario }}</strong></td>
-                    <td><code>{{ senha }}</code></td>
-                    {% if usuario != 'admin' %}
-                        <td>
-                            <form action="/admin/delete_user" method="POST">
-                                <button type="submit" name="usuario_deletado" value="{{ usuario }}">DELETAR</button>
-                            </form>
+        <div class="tabela-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Senha</th>
+                        <th class="col-acoes">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario, senha in usuarios.items() %}
+                    <tr>
+                        <td><strong>{{ usuario }}</strong></td>
+                        <td><code>{{ senha }}</code></td>
+                        <td class="col-acoes">
+                            {% if usuario != 'admin' %}
+                            <div class="btn-grupo">
+                                <a href="{{ url_for('edit_user', usuario=usuario) }}" class="btn btn-editar">EDITAR</a>
+                                <form action="/admin/delete_user" method="POST" class="form-inline">
+                                    <button type="submit" name="usuario_deletado" value="{{ usuario }}" class="btn btn-deletar">DELETAR</button>
+                                </form>
+                            </div>
+                            {% else %}
+                            <span class="badge-admin">Admin Master</span>
+                            {% endif %}
                         </td>
-                        <td>
-                            <a href="{{ url_for('edit_user', usuario=usuario) }}">EDITAR</a>
-                        </td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% else %}
         <p class="sem-usuarios">Nenhum usuário cadastrado até o momento.</p>
         {% endif %}
 
-        <div class="acoes">
-            <a href="/" class="btn-voltar">Voltar para o Login</a>
+        <div class="acoes-rodape">
+            <a href="/" class="btn-link">← Voltar para o Login</a>
         </div>
     </div>
-
 </body>
-
 </html>

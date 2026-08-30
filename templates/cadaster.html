@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
-    <div class="formulario-login">
+    <div class="card">
         <h1>Cadastro</h1>
 
         {% if erro %}
-        <p class="erro">{{ erro }}</p>
+        <p class="msg msg-erro">{{ erro }}</p>
         {% endif %}
 
         {% if cadaster %}
-        <p class="cadaster">O usuário <strong>{{ cadaster }}</strong> foi cadastrado com sucesso!</p>
+        <p class="msg msg-sucesso">O usuário <strong>{{ cadaster }}</strong> foi cadastrado com sucesso!</p>
         {% endif %}
 
         <form action="/cadaster" method="POST">
@@ -31,12 +29,11 @@
                 <input type="password" id="cadastro_senha" name="cadastro_senha" required>
             </div>
 
-            <button type="submit">Cadastrar</button><br>
-            <a href="/">Login</a>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <div class="link-central">
+                <a href="/" class="btn-link">Já tem uma conta? Faça Login</a>
+            </div>
         </form>
-
     </div>
-
 </body>
-
 </html>

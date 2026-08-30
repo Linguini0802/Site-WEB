@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,44 +7,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Editar o usuário {{ usuario }}</h1>
+    <div class="card card-wide">
+        <h1>Editar usuário: {{ usuario }}</h1>
 
-    {% if erro %}
-    <p>{{ erro }}</p>
-    {% endif %}
-    
+        {% if erro %}
+        <p class="msg msg-erro">{{ erro }}</p>
+        {% endif %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Usuário</th>
-                <th>Senha</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr method="GET">
-                <td><strong>Usuário atual: {{ usuario }}</strong></td>
-                <td><code>Senha Atual: {{ senha }}</code></td>
-            </tr>
-            <form method="POST">
-                <tr>
-                    <td>
-                        <label for="edit_name">Alterar nome de usuário:</label>
-                        <input type="text" id="edit_name" name="edit_name">
-                    </td>
-                    <td>
-                        <label for="edit_password">Alterar senha:</label>
-                        <input type="password" id="edit_password" name="edit_password">
-                    </td>
-                    <td>
-                        <button type="submit">Confirmar alterações</button>
-                    </td>
-                    <td>
-                        <a href="/admin">Cancelar alterações</a>
-                    </td>
-                </tr>
-            </form>
-        </tbody>
-    </table>
+        <div class="info-usuario">
+            <p><strong>Usuário atual:</strong> {{ usuario }}</p>
+            <p><strong>Senha atual:</strong> <code>{{ senha }}</code></p>
+        </div>
+
+        <form method="POST" class="form-edicao">
+            <div class="grupo-input">
+                <label for="edit_name">Alterar nome de usuário:</label>
+                <input type="text" id="edit_name" name="edit_name" placeholder="Novo nome (opcional)">
+            </div>
+
+            <div class="grupo-input">
+                <label for="edit_password">Alterar senha:</label>
+                <input type="password" id="edit_password" name="edit_password" placeholder="Nova senha (opcional)">
+            </div>
+
+            <div class="acoes-form">
+                <button type="submit" class="btn btn-primary">Confirmar alterações</button>
+                <a href="/admin" class="btn-link">Cancelar alterações</a>
+            </div>
+        </form>
+    </div>
 </body> 
 </html>

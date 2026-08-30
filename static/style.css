@@ -1,14 +1,14 @@
-/* Configuração Geral */
+/* Reset Básico */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 body {
-    background-color: #f4f6f9;
-    color: #333;
+    background-color: #f0f2f5;
+    color: #1c1e21;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,155 +16,230 @@ body {
     padding: 20px;
 }
 
-/* Container / Cards centrais */
-.login-card, .formulario-login, .admin-card, body > h1 {
+/* Card Principal (Container) */
+.card {
     background: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
 }
 
-.admin-card {
-    max-width: 800px;
+.card-wide {
+    max-width: 750px;
 }
 
-/* Títulos */
-h1, h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
+.text-center {
     text-align: center;
 }
 
-p {
-    margin-bottom: 15px;
+/* Tipografia */
+h1, h2 {
+    color: #0d6efd;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    text-align: center;
 }
 
 .subtitulo {
-    font-weight: bold;
-    margin-top: 15px;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    color: #495057;
 }
 
-/* Formulários e Inputs */
+/* Formulários & Campos */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
 }
 
-.input-group, .grupo-input {
+.form-inline {
+    display: inline;
+    margin: 0;
+}
+
+.grupo-input {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 label {
     font-weight: 600;
-    font-size: 0.9em;
-    color: #495057;
+    font-size: 0.9rem;
+    color: #4b5563;
 }
 
 input[type="text"],
 input[type="password"] {
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1em;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #3498db;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
     outline: none;
 }
 
 /* Botões */
-button {
-    background-color: #3498db;
-    color: white;
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-/* Estilo para botão DELETAR */
-button[name="usuario_deletado"] {
-    background-color: #e74c3c;
-    padding: 5px 10px;
-    font-size: 0.85em;
-}
-
-button[name="usuario_deletado"]:hover {
-    background-color: #c0392b;
-}
-
-/* Tabelas (Painel Admin e Editar Usuário) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    margin-bottom: 20px;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-th {
-    background-color: #e9ecef;
-    color: #495057;
-}
-
-code {
-    background-color: #f8f9fa;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #e83e8c;
-}
-
-/* Links */
-a {
-    color: #3498db;
     text-decoration: none;
-    font-size: 0.9em;
+    transition: all 0.2s ease;
 }
 
-a:hover {
+.btn-primary {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-editar {
+    background-color: #ffc107;
+    color: #000;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-editar:hover {
+    background-color: #ffca2c;
+}
+
+.btn-deletar {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-deletar:hover {
+    background-color: #bb2d3b;
+}
+
+.btn-grupo {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-link {
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-link:hover {
     text-decoration: underline;
 }
 
-.acoes, .btn-voltar {
-    display: inline-block;
-    margin-top: 15px;
+.link-central {
+    text-align: center;
+    margin-top: 10px;
 }
 
-/* Mensagens de Feedback */
-.erro, p:has(+ table), .stats_delete {
-    padding: 10px;
+.acoes-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.acoes-rodape {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Tabelas (Admin & Detalhes) */
+.tabela-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+}
+
+.col-acoes {
+    width: 180px;
+}
+
+code {
+    background-color: #f1f5f9;
+    color: #d63384;
+    padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.9em;
-    margin-bottom: 15px;
+    font-family: monospace;
 }
 
-.erro {
+.badge-admin {
+    background-color: #e2e8f0;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+/* Bloco de info da página de edição */
+.info-usuario {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Mensagens de Notificação */
+.msg {
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.msg-erro {
     background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    color: #842029;
+    border: 1px solid #f5c2c7;
 }
 
-.cadaster, .stats_delete {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.msg-sucesso {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
 }
