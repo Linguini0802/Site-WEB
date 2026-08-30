@@ -16,6 +16,10 @@
         <p class="stats_delete">{{ stats_delete }}</p>
         {% endif %}
 
+        {% if stats_edit %}
+        <p>Alterações bem sucedidas</p>
+        {% endif %}
+
         <p class="subtitulo">Usuários cadastrados no sistema:</p>
 
         {% if usuarios %}
@@ -33,10 +37,12 @@
                     <td><code>{{ senha }}</code></td>
                     {% if usuario != 'admin' %}
                         <td>
-                            
                             <form action="/admin/delete_user" method="POST">
                                 <button type="submit" name="usuario_deletado" value="{{ usuario }}">DELETAR</button>
                             </form>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('edit_user', usuario=usuario) }}">EDITAR</a>
                         </td>
                     {% endif %}
                 </tr>

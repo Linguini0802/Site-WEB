@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuário</title>
+</head>
+<body>
+    <h1>Editar o usuário {{ usuario }}</h1>
+
+    {% if erro %}
+    <p>{{ erro }}</p>
+    {% endif %}
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr method="GET">
+                <td><strong>Usuário atual: {{ usuario }}</strong></td>
+                <td><code>Senha Atual: {{ senha }}</code></td>
+            </tr>
+            <form method="POST">
+                <tr>
+                    <td>
+                        <label for="edit_name">Alterar nome de usuário:</label>
+                        <input type="text" id="edit_name" name="edit_name">
+                    </td>
+                    <td>
+                        <label for="edit_password">Alterar senha:</label>
+                        <input type="password" id="edit_password" name="edit_password">
+                    </td>
+                    <td>
+                        <button type="submit">Confirmar alterações</button>
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</body> 
+</html>
