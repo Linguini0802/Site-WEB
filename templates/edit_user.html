@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Editar o usuário {{ usuario }}</h1>
@@ -37,6 +38,9 @@
                     </td>
                     <td>
                         <button type="submit">Confirmar alterações</button>
+                    </td>
+                    <td>
+                        <a href="/admin">Cancelar alterações</a>
                     </td>
                 </tr>
             </form>
