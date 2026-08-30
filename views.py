@@ -29,15 +29,16 @@ def login():
 @app.route('/admin', methods=['GET'])
 def admin():
     dados_cadastros = functions.carregar_dados()
-    usuario_deletado = request.args.get('usuario_deletado')
+    stats_delete = request.args.get('stats_delete')
     
     # Envia os dados com a chave 'usuarios' para o HTML
-    return render_template('admin.html', usuarios=dados_cadastros, usuario_deletado=usuario_deletado)
+    return render_template('admin.html', usuarios=dados_cadastros, stats_delete=stats_delete)
 
 #ÁREA ADM/ DELETAR USUÁRIO
 @app.route('/admin/delete_user', methods=['POST', 'GET'])
 def delete_user():
 
+    stats_delete = False
     usuario_deletado = request.form.get('usuario_deletado')
 
     if request.method == 'POST':
@@ -46,7 +47,8 @@ def delete_user():
             if u == usuario_deletado:
                 del cadastros[usuario_deletado]
                 functions.salvar_dados(cadastros)
-                return redirect(url_for('admin', usuario_deletado=usuario_deletado))
+                stats_delete = f"O usuário {usuario_deletado} foi deletado com sucesso!"
+                return redirect(url_for('admin', stats_delete=stats_delete))
     return render_template('admin.html')
 
 #CADASTRAR
