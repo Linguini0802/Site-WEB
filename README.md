@@ -29,7 +29,7 @@ PowerShell
 .\.venv\Scripts\Activate.ps1
 
 (Se der erro de permissão no PowerShell, rode antes:
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass)
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 ###  3️⃣ Instalar as dependências
