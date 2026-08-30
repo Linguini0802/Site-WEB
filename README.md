@@ -49,7 +49,8 @@ python app.py
 ```text
 Site-WEB/
 |── templates/          # Arquivos HTML da aplicação
-├── app.py              # Script principal e rotas da aplicação
+├── app.py              # Script principal
+├── views.py            # Rotas da aplicação
 ├── functions.py        # Funções auxiliares e lógica de negócios
 ├── cadastros.json      # Base de dados local em formato JSON
 └── README.md           # Documentação do projeto
