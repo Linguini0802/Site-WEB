@@ -65,3 +65,21 @@ Site Definitivo/
 │   ├── admin.html             # Painel Administrativo
 │   └── edit_user.html         # Edição de Usuário (Admin)
 └── requirements.txt          # Dependências do projeto
+```
+## 🚀 Execução do Projeto
+
+Siga os passos abaixo no seu terminal para configurar o ambiente e executar a aplicação:
+
+### 1. Criar e ativar o ambiente virtual
+
+**Windows (PowerShell):**
+```powershell
+# 1. Cria o ambiente virtual
+python -m venv .venv
+
+# 2. Libera a execução de scripts no PowerShell (caso necessário)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# 3. Ativa o ambiente virtual
+.venv\Scripts\Activate.ps1
+
