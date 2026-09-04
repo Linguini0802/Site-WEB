@@ -83,3 +83,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # 3. Ativa o ambiente virtual
 .venv\Scripts\Activate.ps1
 
+# 4. Instala todos os requisitos
+pip install -r requirements.txt
+
