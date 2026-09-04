@@ -1,0 +1,15 @@
+{
+    "proximo_id": 3,
+    "usuarios": [
+        {
+            "id": 1,
+            "usuario": "admin",
+            "senha": "admin"
+        },
+        {
+            "id": 2,
+            "usuario": "ZickZ",
+            "senha": "scrypt:32768:8:1$arjzUMFyuDjCzs71$56612da6972a2072704c6dcb31500b9c21577e183acaf2fa611e1fb0842fe17f125dd14714314233dea6f90220535760219ded156f51a520cebc7682a18ae10c"
+        }
+    ]
+}

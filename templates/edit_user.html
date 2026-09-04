@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="card-container">
+        <h1>EDITAR USUÁRIO "{{ usuario }}"</h1>
+
+        {% if erro %}
+        <p class="alert alert-danger">{{ erro }}</p>
+        {% endif %}
+
+        {% if id %}
+        <div class="info-card">
+            <p><strong>Id:</strong> {{ id }}</p>
+            <p><strong>Usuário atual:</strong> {{ usuario }}</p>
+            <p><strong>Senha atual:</strong> <code>{{ senha }}</code></p>
+        </div>
+        {% endif %}
+
+        <form method="POST" action="/admin/edit_user/{{ id }}" class="form-card">
+            <div class="form-group">
+                <label for="usuario_editado">Alterar nome de usuário:</label>
+                <input type="text" id="usuario_editado" name="usuario_editado" placeholder="Novo nome (opcional)">
+            </div>
+
+            <div class="form-group">
+                <label for="senha_editado">Alterar senha:</label>
+                <input type="password" id="senha_editado" name="senha_editado" placeholder="Nova senha (opcional)">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Confirmar alterações</button>
+            <div class="form-footer">
+                <a href="/admin" class="btn btn-secondary">Cancelar alterações</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

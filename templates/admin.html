@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Adm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="page-container">
+        <header class="page-header">
+            <h1>ÁREA DO ADMINISTRADOR</h1>
+
+            {% if stats_delete %}
+            <p class="alert alert-info">{{ stats_delete }}</p>
+            {% endif %}
+
+            {% if stats_edit %}
+            <p class="alert alert-info">{{ stats_edit }}</p>
+            {% endif %}
+        </header>
+
+        <section class="section-table">
+            {% if cadastros %}
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Usuário</th>
+                            <th>Senha</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in cadastros['usuarios'] %}
+                        <tr>
+                            <td>{{ user['id'] }}</td>
+                            <td>{{ user['usuario'] }}</td>
+                            <td><code>{{ user['senha'] }}</code></td>
+                            {% if user['usuario'] != 'admin' %}
+                                <td class="actions-cell">
+                                    <form method="POST" action="/admin/delete_user/{{ user['id'] }}" class="inline-form">
+                                        <button type="submit" class="btn btn-danger btn-sm">DELETAR</button>
+                                    </form>
+                                    <a href="{{ url_for('edit_user', id=user['id']) }}" class="btn btn-warning btn-sm">EDITAR</a>
+                                </td>
+                            {% else %}
+                                <td><span class="badge badge-admin">Admin Master</span></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">Nenhum usuário cadastrado!</p>
+            {% endif %}
+        </section>
+
+        <footer class="nav-footer">
+            <a href="/" class="btn btn-secondary">Login</a>
+        </footer>
+    </div>
+</body>
+</html>

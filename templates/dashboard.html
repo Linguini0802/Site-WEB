@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="page-container">
+        <header class="page-header">
+            <h1>DASHBOARD</h1>
+            {% if usuario %}
+            <p class="welcome-text">Seja bem vindo, <strong>{{ usuario }}</strong>!</p>
+            {% endif %}
+
+            {% if stats_video %}
+            <p class="alert alert-info">{{ stats_video }}</p>
+            {% endif %}
+
+            {% if stats_delete %}
+            <p class="alert alert-info">{{ stats_delete }}</p>
+            {% endif %}
+
+        </header>
+
+        <section class="section-form">
+            <form method="POST" action="/dashboard/{{ id_usuario }}" class="form-card">
+                <div class="form-group">
+                    <label for="nome_video">Nome do vídeo:</label>
+                    <input type="text" id="nome_video" name="nome_video" placeholder="Digite o nome do vídeo..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="url_video">URL do vídeo:</label>
+                    <input type="text" id="url_video" name="url_video" placeholder="Digite o url do vídeo..." required>
+                </div>
+
+                <input type="hidden" id="usuario_video" name="usuario_video" value="{{ usuario }}">
+                <button type="submit" class="btn btn-primary">ENVIAR VÍDEO</button>
+
+                <footer class="nav-footer">
+                    <a href="/logout" class="btn btn-secondary">Sair</a>
+                </footer>
+            </form>
+            
+        </section>
+
+        <section class="section-table">
+            {% if videos['videos'] %}
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Nome do vídeo</th>
+                                <th>Vídeo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for video in videos['videos'] %}
+                                <tr>
+                                    <td>{{ video['nome_usuario'] }}</td>
+                                    <td>{{ video['nome_video'] }}</td>
+                                    <td class="video-cell">
+                                        <div class="iframe-wrapper">
+                                            <iframe src="{{ video['url_video'] }}"
+                                                title="{{ video['nome_video'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                                                encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="/dashboard/delete_video/{{ video['id'] }}">
+                                            <input type="hidden" id="id_usuario" name="id_usuario" value="{{ id_usuario }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">DELETAR</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="empty-state">Não há vídeos cadastrados!</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
